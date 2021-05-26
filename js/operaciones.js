@@ -1,5 +1,5 @@
 // ----------------- Variables ------------------------
-    //numeros
+//numeros
 var screen = document.getElementById("_calculatorScreen"),
     boton0 = document.getElementById("_btn0"),
     boton1 = document.getElementById("_btn1"),
@@ -14,13 +14,12 @@ var screen = document.getElementById("_calculatorScreen"),
     //Operadores
     botonResta = document.getElementById("_btnResta"),
     botonSuma = document.getElementById("_btnPlus"),
-    botonMult = document.getElementsById("_btnMult"),
-    botonDiv = document.getElementsById("_btnDiv"),
-    botonRaiz = document.getElementsById("_btnRaiz"),
-    botonPorc = document.getElementsById("_btn%"),
-    botonEntreX = document.getElementsById("_btn/x"),
+    botonMult = document.getElementById("_btnMult"),
+    botonDiv = document.getElementById("_btnDiv"),
+    botonRaiz = document.getElementById("_btnRaiz"),
+    botonPorc = document.getElementById("_btn%"),
+    botonEntreX = document.getElementById("_btn/x"),
     botonIgual = document.getElementById("_btnEqual"),
-    
     values = [0, 0, 0, 0],
     i = 0,
     letraOperacion = '';
@@ -92,14 +91,8 @@ botonSuma.addEventListener('click', function (e) {
     letraOperacion = a;
 });
 
-botonIgual.addEventListener("click", function (e) {
-    e.preventDefault();
-    i = 0;
-
-    switch (letraOperacion) {
-        case 'a':
-            for (var j = 0; j < i.length; j++) {
-
-            }
-            break;
-
+// botonIgual.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     i = 0;
+//     values[1] = parseInt(val)
+// }
