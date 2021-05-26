@@ -6,7 +6,11 @@
 }
 
 /* Movemos hacia la derecha el placeholder del campo number */
-input[type="number"]::placeholder{ 
+input[type="text"]::placeholder{ 
+    text-align: right;
+}
+
+input[type="text"]{ 
     text-align: right;
 }
 

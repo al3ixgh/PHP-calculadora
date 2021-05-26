@@ -17,7 +17,7 @@ var screen = document.getElementById("_calculatorScreen"),
     botonMult = document.getElementById("_btnMult"),
     botonDiv = document.getElementById("_btnDiv"),
     botonRaiz = document.getElementById("_btnRaiz"),
-    botonPorc = document.getElementById("_btn%"),
+    botonPorc = document.getElementById("_btnPorc"),
     botonEntreX = document.getElementById("_btn/x"),
     botonIgual = document.getElementById("_btnEqual"),
     values = [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -120,6 +120,30 @@ botonDiv.addEventListener('click', function (e) {
     letraOperacion = 'd';
 });
 
+botonRaiz.addEventListener('click', function (e) {
+    e.preventDefault();
+    i=0;
+    screen.value = "";
+    x = parseInt(values[0]);
+    letraOperacion = 'e';
+});
+
+botonEntreX.addEventListener('click', function (e) {
+    e.preventDefault();
+    i=0;
+    screen.value = "";
+    x = parseInt(values[0]);
+    letraOperacion = 'f';
+});
+
+botonPorc.addEventListener('click', function (e) {
+    e.preventDefault();
+    i=0;
+    screen.value = "";
+    x = parseInt(values[0]);
+    letraOperacion = 'g';
+});
+
 botonIgual.addEventListener("click", function (e) {
     e.preventDefault();
     i = 0;
@@ -129,28 +153,53 @@ botonIgual.addEventListener("click", function (e) {
     a: suma
     b: resta
     c: multiplicación
-    d: división        
+    d: división    
+    e: raiz cuadrada   
+    f: 1/x 
+    g: porcentaje
     */
 
     switch (letraOperacion) {
         case 'a':
             resultado = x + y;
+            resultado=resultado.toFixed(2);
             break;
         case 'b':
             resultado = x - y;
+            resultado=resultado.toFixed(2);
             break;
         case 'c':
             resultado = x * y;
+            resultado=resultado.toFixed(2);
             break;
         case 'd':
             if (y != 0) {
                 resultado = x / y;
+                resultado=resultado.toFixed(2);
             } else {
                 resultado = "Syntax Error";
             }
             break;
+        case 'e':
+            resultado = Math.sqrt(x);
+            resultado=resultado.toFixed(2);
+            break;
+        case 'f':
+            resultado = 1/x;
+            resultado=resultado.toFixed(2);
+            break;
+        case 'g':
+            if(y==0){
+                resultado = x/100;
+                resultado=resultado.toFixed(2);
+            }
+            else{
+                resultado = resultado/100;
+                resultado=resultado.toFixed(2);
+            }
         default:
             break;
+        
     }
 
     screen.value = resultado;
