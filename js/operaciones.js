@@ -12,6 +12,7 @@ var screen = document.getElementById("_calculatorScreen"),
     boton9 = document.getElementById("_btn9"),
     borrar = document.getElementById("_clear"),
     //Operadores
+    botonCE = document.getElementById("_btnCE"),
     botonSuma = document.getElementById("_btnPlus"),
     botonResta = document.getElementById("_btnResta"),
     botonMult = document.getElementById("_btnMult"),
@@ -20,7 +21,8 @@ var screen = document.getElementById("_calculatorScreen"),
     botonPorc = document.getElementById("_btnPorc"),
     botonEntreX = document.getElementById("_btn/x"),
     botonIgual = document.getElementById("_btnEqual"),
-    values = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    botonNegar = document.getElementById("_btnNegar"),
+    values = [0, 0],
     x,
     y,
     resultado,
@@ -122,7 +124,7 @@ botonDiv.addEventListener('click', function (e) {
 
 botonRaiz.addEventListener('click', function (e) {
     e.preventDefault();
-    i=0;
+    i = 0;
     screen.value = "";
     x = parseInt(values[0]);
     letraOperacion = 'e';
@@ -130,7 +132,7 @@ botonRaiz.addEventListener('click', function (e) {
 
 botonEntreX.addEventListener('click', function (e) {
     e.preventDefault();
-    i=0;
+    i = 0;
     screen.value = "";
     x = parseInt(values[0]);
     letraOperacion = 'f';
@@ -138,7 +140,7 @@ botonEntreX.addEventListener('click', function (e) {
 
 botonPorc.addEventListener('click', function (e) {
     e.preventDefault();
-    i=0;
+    i = 0;
     screen.value = "";
     x = parseInt(values[0]);
     letraOperacion = 'g';
@@ -162,51 +164,68 @@ botonIgual.addEventListener("click", function (e) {
     switch (letraOperacion) {
         case 'a':
             resultado = x + y;
-            resultado=resultado.toFixed(2);
+            resultado = resultado.toFixed(2);
             break;
         case 'b':
             resultado = x - y;
-            resultado=resultado.toFixed(2);
+            resultado = resultado.toFixed(2);
             break;
         case 'c':
             resultado = x * y;
-            resultado=resultado.toFixed(2);
+            resultado = resultado.toFixed(2);
             break;
         case 'd':
             if (y != 0) {
                 resultado = x / y;
-                resultado=resultado.toFixed(2);
+                resultado = resultado.toFixed(2);
             } else {
                 resultado = "Syntax Error";
             }
             break;
         case 'e':
             resultado = Math.sqrt(x);
-            resultado=resultado.toFixed(2);
+            resultado = resultado.toFixed(2);
             break;
         case 'f':
-            resultado = 1/x;
-            resultado=resultado.toFixed(2);
+            resultado = 1 / x;
+            resultado = resultado.toFixed(2);
             break;
         case 'g':
-            if(y==0){
-                resultado = x/100;
-                resultado=resultado.toFixed(2);
+            if (y == 0) {
+                resultado = x / 100;
+                resultado = resultado.toFixed(2);
             }
-            else{
-                resultado = resultado/100;
-                resultado=resultado.toFixed(2);
+            else {
+                resultado = resultado / 100;
+                resultado = resultado.toFixed(2);
             }
         default:
             break;
-        
     }
-
     screen.value = resultado;
 });
 
 borrar.addEventListener('click', function () {
     screen.value = "";
     i = 0;
-    values = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    values = [0, 0];
+});
+
+botonCE.addEventListener('click', function () {
+    if ((values[0] != 0) && (values[1] != 0)) {
+        values[1] = '0';
+        screen.value = "";
+    }
+    else if ((values[0] != 0) && (values[1] == 0)) {
+        values[0] = '0';
+        screen.value = "";
+    }
+});
+
+//hace falta mirar cuando haya 2 numeros negar el segundo
+botonNegar.addEventListener('click', function (e) {
+    e.preventDefault();
+    i = 0;
+    screen.value = "";
+    x = parseFloat((values[0])*(-1));
 });
